@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tonic Vermifuge</title><link href="http://brindi.si/g/" rel="alternate"></link><link href="http://brindi.si/g/feeds/blog.atom.xml" rel="self"></link><id>http://brindi.si/g/</id><updated>2015-02-28T00:00:00+01:00</updated><entry><title>FakeCommerce, an exercise in OSINT</title><link href="http://brindi.si/g/blog/fakecommerce-an-exercise-in-osint.html" rel="alternate"></link><updated>2015-02-28T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2015-02-28:g/blog/fakecommerce-an-exercise-in-osint.html</id><summary type="html">&lt;p&gt;I've been contacted by a friend seeking for help: he bought something on a random ecommerce and after 30 days nothing was shipped and no one was replying to his emails. HE wanted to know if he was scammed.&lt;/p&gt;
+&lt;p&gt;In the end the item arrived and the ecommerce proven to be somehow legit and the &lt;code&gt;FakeCommerce&lt;/code&gt; label might be a bit sensationalistc.
+Anyhow the quick investigation I performed was a good OSINT exercise worth a share.&lt;/p&gt;
+&lt;p&gt;The website was &lt;code&gt;pietraneraetna.it&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;That was the email he received to confirm his purchase:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;Da&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt; &lt;span class="s-Atom"&gt;auto1@winwservice&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;comData&lt;/span&gt; &lt;span class="nn"&gt;invio&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s-Atom"&gt;domenica&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt; &lt;span class="s-Atom"&gt;gennaio&lt;/span&gt; &lt;span class="mi"&gt;2015&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="nv"&gt;A&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="nv"&gt;XXXX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="nv"&gt;XXXXX&lt;/span&gt;&lt;span class="s-Atom"&gt;@hotmail&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;itDear&lt;/span&gt; &lt;span class="nv"&gt;XXXXXXXXX&lt;/span&gt;&lt;span class="s-Atom"&gt;@hotmail&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nn"&gt;it&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nv"&gt;You&lt;/span&gt; &lt;span class="s-Atom"&gt;have&lt;/span&gt; &lt;span class="s-Atom"&gt;transferred&lt;/span&gt; &lt;span class="mf"&gt;91.41&lt;/span&gt; &lt;span class="nv"&gt;EUR&lt;/span&gt; &lt;span class="s-Atom"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+ &lt;span class="s-Atom"&gt;pietraneraetna&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;--------------------------------------------------------=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;-----------------------------------------------------------&lt;/span&gt;&lt;span class="nv"&gt;The&lt;/span&gt; &lt;span class="s-Atom"&gt;order&lt;/span&gt; &lt;span class="s-Atom"&gt;detail&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;s&lt;/span&gt; &lt;span class="s-Atom"&gt;are&lt;/span&gt; &lt;span class="s-Atom"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;follows&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s-Atom"&gt;----------------------------------------------------------=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;---------------------------------------------------------&lt;/span&gt;&lt;span class="nv"&gt;Order&lt;/span&gt; &lt;span class="nv"&gt;No&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;XXXX&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s-Atom"&gt;mm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="nv"&gt;XXXXss&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s-Atom"&gt;hpdXXXXSeller&lt;/span&gt; &lt;span class="nn"&gt;website&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s-Atom"&gt;pietraneraetna&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;itPayment&lt;/span&gt; &lt;span class="nv"&gt;Date&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;Time&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2015&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="nv"&gt;Amount&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;91.41&lt;/span&gt; &lt;span class="nv"&gt;EURPayment&lt;/span&gt; &lt;span class="nv"&gt;No&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;HPV15011820154XXXXXXDue&lt;/span&gt; &lt;span class="s-Atom"&gt;to&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt; &lt;span class="s-Atom"&gt;foreign&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;exchange&lt;/span&gt; &lt;span class="s-Atom"&gt;rate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt; &lt;span class="s-Atom"&gt;amount&lt;/span&gt; &lt;span class="s-Atom"&gt;displayed&lt;/span&gt; &lt;span class="s-Atom"&gt;on&lt;/span&gt; &lt;span class="s-Atom"&gt;your&lt;/span&gt; &lt;span class="s-Atom"&gt;statement&lt;/span&gt; &lt;span class="s-Atom"&gt;might&lt;/span&gt; &lt;span class="s-Atom"&gt;be&lt;/span&gt; &lt;span class="s-Atom"&gt;a&lt;/span&gt; &lt;span class="s-Atom"&gt;little&lt;/span&gt; &lt;span class="s-Atom"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;it&lt;/span&gt; &lt;span class="s-Atom"&gt;different&lt;/span&gt; &lt;span class="s-Atom"&gt;from&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt; &lt;span class="s-Atom"&gt;real&lt;/span&gt; &lt;span class="s-Atom"&gt;price&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;You&lt;/span&gt; &lt;span class="s-Atom"&gt;can&lt;/span&gt; &lt;span class="s-Atom"&gt;also&lt;/span&gt; &lt;span class="s-Atom"&gt;check&lt;/span&gt; &lt;span class="s-Atom"&gt;your&lt;/span&gt; &lt;span class="s-Atom"&gt;order&lt;/span&gt; &lt;span class="s-Atom"&gt;status&lt;/span&gt; &lt;span class="s-Atom"&gt;and&lt;/span&gt; &lt;span class="s-Atom"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;onfirm&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt; &lt;span class="s-Atom"&gt;merchandise&lt;/span&gt; &lt;span class="s-Atom"&gt;delivery&lt;/span&gt; &lt;span class="s-Atom"&gt;on&lt;/span&gt; &lt;span class="s-Atom"&gt;our&lt;/span&gt; &lt;span class="s-Atom"&gt;bill&lt;/span&gt; &lt;span class="s-Atom"&gt;support&lt;/span&gt; &lt;span class="s-Atom"&gt;webiste&lt;/span&gt; &lt;span class="s-Atom"&gt;ofPlease&lt;/span&gt; &lt;span class="s-Atom"&gt;note&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;=&lt;/span&gt;
+&lt;span class="s2"&gt;BUTTER UILF&amp;quot;&lt;/span&gt; &lt;span class="s-Atom"&gt;will&lt;/span&gt; &lt;span class="s-Atom"&gt;be&lt;/span&gt; &lt;span class="s-Atom"&gt;displayed&lt;/span&gt; &lt;span class="s-Atom"&gt;on&lt;/span&gt; &lt;span class="s-Atom"&gt;your&lt;/span&gt; &lt;span class="s-Atom"&gt;credit&lt;/span&gt; &lt;span class="s-Atom"&gt;card&lt;/span&gt; &lt;span class="s-Atom"&gt;statement&lt;/span&gt; &lt;span class="s-Atom"&gt;instead&lt;/span&gt; &lt;span class="s-Atom"&gt;of&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+ &lt;span class="s-Atom"&gt;website&lt;/span&gt; &lt;span class="s-Atom"&gt;from&lt;/span&gt; &lt;span class="s-Atom"&gt;which&lt;/span&gt; &lt;span class="s-Atom"&gt;you&lt;/span&gt; &lt;span class="s-Atom"&gt;purchased&lt;/span&gt; &lt;span class="s-Atom"&gt;the&lt;/span&gt; &lt;span class="s-Atom"&gt;mentioned&lt;/span&gt; &lt;span class="s-Atom"&gt;product&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;It&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;s just used for =&lt;/span&gt;
+&lt;span class="s-Atom"&gt;sending bill statement by the seller&amp;#39;s&lt;/span&gt; &lt;span class="s-Atom"&gt;payment&lt;/span&gt; &lt;span class="s-Atom"&gt;processor&lt;/span&gt; &lt;span class="s-Atom"&gt;as&lt;/span&gt; &lt;span class="s-Atom"&gt;a&lt;/span&gt; &lt;span class="s-Atom"&gt;tool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s-Atom"&gt;--------=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;---------------------------------------------------------------------------=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;--------------------------------&lt;/span&gt;&lt;span class="nv"&gt;Should&lt;/span&gt; &lt;span class="s-Atom"&gt;you&lt;/span&gt; &lt;span class="s-Atom"&gt;need&lt;/span&gt; &lt;span class="s-Atom"&gt;any&lt;/span&gt; &lt;span class="s-Atom"&gt;further&lt;/span&gt; &lt;span class="s-Atom"&gt;assistance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt; &lt;span class="s-Atom"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;lease&lt;/span&gt; &lt;span class="s-Atom"&gt;don&amp;#39;t hesitate to contact our Customer Services department at service=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;@winwservice.comwith the transaction details listed above or visit our bill=&lt;/span&gt;
+&lt;span class="s-Atom"&gt; support webiste of The order on the help site of random codes are 99495512=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;62.Tel: +86-0755-83268282Fax: +86-0755-83268282E-mail: service@winwservice.=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;com------------------------------------------------------------------------=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;-------------------------------------------If you have any question=2C plea=&lt;/span&gt;
+&lt;span class="s-Atom"&gt;se don&amp;#39;t&lt;/span&gt; &lt;span class="s-Atom"&gt;hesitate&lt;/span&gt; &lt;span class="s-Atom"&gt;to&lt;/span&gt; &lt;span class="s-Atom"&gt;contact&lt;/span&gt; &lt;span class="s-Atom"&gt;us&lt;/span&gt;&lt;span class="p"&gt;!&lt;/span&gt;                      &lt;span class="o"&gt;=&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some interesting pieces:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Please note &amp;quot;BUTTER UILF&amp;quot; will be displayed on your credit card statement instead of the website from which you purchased the mentioned product.It&amp;#39;s just used for sending bill statement by the seller&amp;#39;s payment processor as a tool.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A quick search on &lt;em&gt;BUTTER UILD&lt;/em&gt; revealed nothing. But in the email there were some contact details:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Tel: +86-0755-83268282
+Fax: +86-0755-83268282
+E-mail: service@winwservice.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So &lt;code&gt;+86&lt;/code&gt; is China country calling code, and &lt;code&gt;0755&lt;/code&gt; is the Shenzhen prefix.
+While the site is advertised as a local italian shop looks like it's chinese instead.
+The copy on the pages have also very likely been machine translated.&lt;/p&gt;
+&lt;p&gt;The domain &lt;code&gt;winwservice.com&lt;/code&gt; is registered by &lt;code&gt;HICHINA ZHICHENG TECHNOLOGY LTD&lt;/code&gt;. 
+There is no website attached. A quick search reveals some &lt;a href="http://www.ripoffreport.com/r/Louis-Vuitton-outlet-Atlanta-Ga/internet/Louis-Vuitton-outlet-Atlanta-Ga-Wonder-Cuna-goods-AKA-LOUIS-VUITTON-OUTLET-STORE-ATLANT-1157038"&gt;ripoff reports&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Ordered designer bag from an outlet store on line saying it was in Atlanta, Ga
+after giving my credit card payment,received email,Order paid successfully.Order transfered to  1465.49CNY to  wonderchinagoods.com
+then goes on to say,due to foreign exchange rate,amount displayed on my credit card,might be different from real price.
+said please note&amp;quot;SZ PL CO.LTD&amp;quot; will be displayed on credit card instead of websit you ordered from and that the method is used for sending bill statement by the sellers payment processor as a tool.
+this was not displayed on the initial Web site I ordered from, the site had designers Name @ logo, looked very official, and was close to where I reside.
+i have replied several time to cancel this order,with no response.,I was going to try get explanation,but with no response, I now have to go through all the inconvenience of reporting it to my credit card company.
+this should be illegal and considered fraud.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Back to &lt;code&gt;pietraneraetna.it&lt;/code&gt;. The website looks extremely shady and is very similar to the one described on the ripoff report: it is a single brand shop where products are heavily discounted, the copy is badly translated and, even worse, it  processes credit cards directly.&lt;/p&gt;
+&lt;p&gt;A whois reveals that the domain is registered by Mr Xiao Xiaoli. On the same ip &lt;code&gt;31.222.203.13&lt;/code&gt; there are 13 other sites, many of which resemble a lot the current ecommerce template: single brand, bad copy, heavy discount, direct credit card processing, you get the picture.&lt;/p&gt;
+&lt;p&gt;The list:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;anaxo.at&lt;/li&gt;
+&lt;li&gt;archienadon.ca&lt;/li&gt;
+&lt;li&gt;congresslink.it&lt;/li&gt;
+&lt;li&gt;gfzone.it&lt;/li&gt;
+&lt;li&gt;jackorbarn.se&lt;/li&gt;
+&lt;li&gt;kerviaggi.it&lt;/li&gt;
+&lt;li&gt;ludix.be&lt;/li&gt;
+&lt;li&gt;mailserviceijlst.nl&lt;/li&gt;
+&lt;li&gt;pandoraringsuk.eu&lt;/li&gt;
+&lt;li&gt;pietraneraetna.it&lt;/li&gt;
+&lt;li&gt;sindacatosociologi.it&lt;/li&gt;
+&lt;li&gt;summerschoolcomo.it&lt;/li&gt;
+&lt;li&gt;ugg-oultet.nl&lt;/li&gt;
+&lt;li&gt;vitagua.nl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most TLDs are european, one canadian. This is interesting and rise the suspect there could be a network of this kind of ecommerces spanning trough europe. The registrant names yelds nothing useful: different common names, lot of false positive.&lt;/p&gt;
+&lt;p&gt;Insted the ip reveals an interesting ASN: &lt;code&gt;AS12327 IDEAR4BUSINESS-INTERNATIONAL-LTD idear4business international LTD (registered Mar 30, 2011)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let's find the associated ip blocks:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;whois -h whois.radb.net -- &amp;#39;-i origin AS12327&amp;#39; | grep -Eo &amp;quot;([0-9.]+){4}/[0-9]+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The resulting subnets:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;195.191.102.0/23
+31.222.200.0/21
+37.148.216.0/21
+195.191.102.0/23
+37.148.218.0/23
+37.148.218.0/23
+31.222.200.0/21
+31.222.200.0/21
+37.148.220.0/22
+37.148.220.0/22
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A quick manual investigation on the ips revealed some more similar ecommerce sites. DomainTools's IP Explorer has proven to be extremely useful to quickly find populated D blocks.&lt;/p&gt;
+&lt;p&gt;Next step was to perform a mass reverse ip lookup on those subnets.&lt;/p&gt;
+&lt;p&gt;Then I did compare the front page of already known fake ecommerces to derive a common pattern, on top of which I started scraping the whole domain list with the help of some &lt;code&gt;curl&lt;/code&gt; and &lt;code&gt;grep&lt;/code&gt; fu. It took a lot of time.&lt;/p&gt;
+&lt;p&gt;The pattern was far from perfect (and the scraping is incomplete) but gave an astounding list of over 1000 matches. I suspect there might be some more. The list &lt;a href="#"&gt;is here&lt;/a&gt; for your delight, with some false positives. Here is an excerpt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3dblaupause.de&lt;/li&gt;
+&lt;li&gt;abercrombie-zweibrucken.com&lt;/li&gt;
+&lt;li&gt;adrianhoffmann.de&lt;/li&gt;
+&lt;li&gt;airjordansadle.it&lt;/li&gt;
+&lt;li&gt;airmaxnetherlands.com&lt;/li&gt;
+&lt;li&gt;alansvoyant.fr&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;www.nikeblazerfemmelb.com&lt;/li&gt;
+&lt;li&gt;www.nikedunksforsales.com&lt;/li&gt;
+&lt;li&gt;www.nikefactory.us&lt;/li&gt;
+&lt;li&gt;www.nikefree30pinkde.de&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most domains are brand related, some others are obviously totally unlinked and might be recently expired domains mass purchased to gain from their previous seo reputation. The whole network deploy scheme looks totally automatized and many sites share the same product catalog.&lt;/p&gt;
+&lt;p&gt;In the end I can't say if this chinese ecommerce network, while looking shady, is a total scam because my friend received his purchase. Anyhow I still advised him to block the credit card used.&lt;/p&gt;</summary></entry><entry><title>Vulnerable SWF Bundled in 40 Wordpress Plugins</title><link href="http://brindi.si/g/blog/vulnerable-swf-bundled-in-40-wordpress-plugins.html" rel="alternate"></link><updated>2012-11-22T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2012-11-22:g/blog/vulnerable-swf-bundled-in-40-wordpress-plugins.html</id><summary type="html">&lt;p&gt;As stated on &lt;a href="http://seclists.org/fulldisclosure/2012/Nov/51"&gt;this announcement&lt;/a&gt; on Full Disclosure every major old versions of Wordpress (from 2.5 to 3.3.1) was bundling a SWF applet named &lt;code&gt;swfupload.swf&lt;/code&gt; which is vulnerable to XSS. The original hole was &lt;a href="https://nealpoole.com/blog/2012/05/xss-and-csrf-via-swf-applets-swfupload-plupload/"&gt;found by Neal Poole&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Together with &lt;a href="http://www.ethicalhack3r.co.uk/"&gt;Ryan&lt;/a&gt; we investigated a little on this issue and after perfoming a quick dork on google he noticed that a few Wordpress plugins were bundling the very same vulnerable applet.&lt;/p&gt;
+&lt;p&gt;To spot all the affected plugins I wrote a quick crawl and ran it against the public Wordpress SVN plugin repository and, without much surprise, we discovered a total of 40 plugins which included the vulnerable swf:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;http://plugins.svn.wordpress.org/wysija-newsletters/trunk/js/jquery/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-yasslideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-vertical-gallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-superb-slideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-royal-gallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-powerplaygallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-matrix-gallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-levoslideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-image-news-slider/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-homepage-slideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-flipslideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-extended/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-ecommerce-cvs-importer/trunk/upload/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-dreamworkgallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-carouselslideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-bliss-gallery/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-3dflick-slideshow/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/wp-3dbanner-rotator/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/ultimate-tinymce/trunk/addons/images/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/sprapid/trunk/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/spotlightyour/trunk/library/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/smart-slide-show/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/slide-show-pro/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/power-zoomer/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/pica-photo-gallery/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/pdw-file-browser/trunk/pdw_file_browser/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/nextgen-gallery/trunk/admin/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/mac-dock-gallery/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/mac-dock-photogallery/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/fresh-page/trunk/thirdparty/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/fluid-accessible-ui-options/trunk/infusion/lib/swfupload/flash/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/fluid-accessible-uploader/trunk/infusion/lib/swfupload/flash/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/fluid-accessible-pager/trunk/infusion/lib/swfupload/flash/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/fluid-accessible-rich-inline-edit/trunk/infusion/lib/swfupload/flash/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/flash-album-gallery/trunk/admin/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/dm-albums/trunk/flash/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/comment-extra-field/trunk/scripts/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/blaze-slide-show-for-wordpress/trunk/js/swfupload/js/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/apptha-slider-gallery/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+http://plugins.svn.wordpress.org/apptha-banner/trunk/js/swfupload/swfupload.swf - 3a1c6cc728dddc258091a601f28a9c12
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The affected plugins were promptly disclosed to the Wordpress development team and are now included in &lt;a href="http://wpscan.org"&gt;WPScan&lt;/a&gt;'s database.&lt;/p&gt;
+&lt;p&gt;On a sidenote we've scanned the themes in the public directory as well but we didn't find anything. On the other hand after a little google-fu we found out that some commercial themes are bundling swfupload.&lt;/p&gt;
+&lt;p&gt;We didn't investigate further on those, but here is the dork:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;inurl&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;wp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt; &lt;span class="n"&gt;inurl&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;swfupload&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;swf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let us know if you find something!&lt;/p&gt;
+&lt;p&gt;Finally here is the crawler I wrote. It's based on &lt;a href="http://scrapy.org"&gt;scrapy&lt;/a&gt; (which is awesome) and it's simple enough to be customized without much effort:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scrapy.contrib.spiders&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CrawlSpider&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Rule&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scrapy.contrib.linkextractors.sgml&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SgmlLinkExtractor&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scrapy.item&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SWFfound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Yummy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CrawlSpider&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;swfupload_test&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;allowed_domains&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;themes.svn.wordpress.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;start_urls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://themes.svn.wordpress.org/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="n"&gt;rules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;Rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SgmlLinkExtractor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deny&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.*assets\/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.*branches\/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.*tags\/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))),&lt;/span&gt;
+            &lt;span class="n"&gt;Rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SgmlLinkExtractor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;allow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;swfupload\.swf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt; &lt;span class="n"&gt;deny_extensions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;jpg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;jpeg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;gif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;htm&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;callback&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;parse_item&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Found:&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SWFfound&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;
+
+
+&lt;span class="n"&gt;SPIDER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Yummy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ryan found out a vulnerable copy of &lt;code&gt;swfupload.swf&lt;/code&gt; on Xen and Apple websites, he did a resposible disclosure and they fixed it. He got rewarded with a warm pat on the shoulder and a thank you.&lt;/p&gt;
+&lt;p&gt;Lesson learned: never send out a bug details in the first email, ask instead if they have a bug bounty program :)&lt;/p&gt;</summary></entry><entry><title>DOM XSS Honeypot</title><link href="http://brindi.si/g/blog/dom-xss-honeypot.html" rel="alternate"></link><updated>2012-08-26T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2012-08-26:g/blog/dom-xss-honeypot.html</id><summary type="html">&lt;p&gt;While playing around looking for a way to catch xss exploitation on a web application honeypot I've stumbled on the the problem of logging DOM XSS injections performed in the fragment portion of the URL.&lt;/p&gt;
+&lt;p&gt;As specified by the &lt;a href="http://tools.ietf.org/html/rfc3986#section-3.5"&gt;RFCs&lt;/a&gt; browsers are not required to send the fragment to the server since it should be used only for client-side purposes. This is a problem in a scenario where a web app honeypot is involved because we would want to log everything that could expose a potential attack.&lt;/p&gt;
+&lt;p&gt;Since we can't do much server-side it's still possible to catch fragments trough a little javascript trickery. For example on page load we can silently send via an ajax call the current &lt;code&gt;window.location&lt;/code&gt; (and completely delegate the hassle to analyze it to our honeypot, server-side).&lt;/p&gt;
+&lt;p&gt;And as &lt;a href="http://code.google.com/p/domxsswiki/wiki/LocationSources"&gt;DOM XSS are heavily conditioned by the client enviroment&lt;/a&gt; (browser type, version, etc) we should send these informations alongside the &lt;code&gt;window.location&lt;/code&gt; too for a better analysis.&lt;/p&gt;
+&lt;p&gt;A quick prototype using jQuery:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Build the request&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toString&lt;/span&gt;&lt;span class="p"&gt;()};&lt;/span&gt;
+&lt;span class="nx"&gt;request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;browser&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Send via ajax&lt;/span&gt;
+&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ajax&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://honeypot/catch.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;complete&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;jqXHR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;textStatus&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;URL Sent: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;textStatus&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I've taken advantage of &lt;a href="http://api.jquery.com/jQuery.browser/"&gt;jQuery.browser&lt;/a&gt; to collect browser informations. I put together a &lt;a href="http://jsfiddle.net/gbrindisi/FwYfM/"&gt;simplified proof of concept&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The implementation of &lt;code&gt;catch.php&lt;/code&gt; is a matter of choice. &lt;/p&gt;
+&lt;p&gt;Personally I'd like it more to not send responses back to requests (just throw 404s) to reduce the risk a brute force fuzz might undercover it: it's an honeypot after all! It's like a &lt;em&gt;ninja web app&lt;/em&gt;! &lt;/p&gt;
+&lt;p&gt;The downside of this approach is that without s solid error-checking mechanism our ajax communications are downgraded to &lt;strong&gt;best effort attempts&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Anyway I am looking to write a plugin for &lt;a href="/g/projects/wordpot.html"&gt;wordpot&lt;/a&gt; to handle this so I might eventually change my mind.&lt;/p&gt;</summary></entry><entry><title>Hunting Wordpress Exploitation in the Wild</title><link href="http://brindi.si/g/blog/hunting-wordpress-exploitation-in-the-wild.html" rel="alternate"></link><updated>2012-08-14T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2012-08-14:g/blog/hunting-wordpress-exploitation-in-the-wild.html</id><summary type="html">&lt;p&gt;A thing I noticed working day by day on &lt;a href="https://github.com/wpscanteam/wpscan/tree/master/data"&gt;WPScan's vulnerability database&lt;/a&gt; is that many of the Wordpress (plugins) vulns disclosed are far less than the actual number of exploitable plugins. 
+A quick trip on the &lt;a href="https://github.com/wpscanteam/wpscan/tree/master/data"&gt;official directory&lt;/a&gt; and a little browsing over the svn repositories will point out a lot of trivial bugs which might be worth an advisory. I am talking about low hanging fruits like unsophisticated xss and basic sqli.&lt;/p&gt;
+&lt;p&gt;For example some time ago we were debunking a fake advisory with &lt;a href="http://www.ethicalhack3r.co.uk"&gt;Ryan&lt;/a&gt; and we found out a bunch of xss on the very same plugin just by running &lt;a href="http://www.devbug.co.uk"&gt;DevBug&lt;/a&gt; (which was not optimized for Wordpress code). There is a gold mine of easy bugs down there.&lt;/p&gt;
+&lt;p&gt;The hassle is that properly disclosing a vuln takes a lot of time: you should find it, test it, warn the author, warn Automattic, and publish an advisory. If you find an unresponsive author it may take up to a month and meanwhile an horde of new plugins are published. We can't keep up and most of the time it's not worth it.&lt;/p&gt;
+&lt;p&gt;And what if down the mine there is a true gem nobody knows yet? What if it's first found by someone with malicious intents? That's &lt;em&gt;the&lt;/em&gt; problem: a vuln exploited before the advisory. And WPscan relies on advisories as it's main source of data. You do the math.&lt;/p&gt;
+&lt;p&gt;Having fresh data is crucial: from a defensive stand point an average Wordpress user should care far more about actively exploited vulns than random bugs on his installed plugins. In the end if a vulnerability is not exploited it's not a real menace (just a potential one). For example I personally like how recurrently a vulnerable timthumb file is found inside a plugin and a wave of wild exploitation arise. &lt;/p&gt;
+&lt;p&gt;To cath those attacks the approach is standard: honeypots.&lt;/p&gt;
+&lt;p&gt;This should also be how many commercial appsec vendors like SpiderLabs and Sucuri are detecting attacks. SpiderLabs &lt;a href="http://blog.spiderlabs.com/2011/11/wordpress-timthumb-attacks-rising.html"&gt;seems&lt;/a&gt; to have a web app honeypot (general purpose? Wordpress specific?) while at Sucuri they might just monitor their client's Wordpress installations since they seems to have a large wordpress-centric user base. &lt;/p&gt;
+&lt;p&gt;I am just speculating since &lt;strong&gt;nobody is kind enough to share their secrets&lt;/strong&gt;. The best tool available so far is &lt;a href="http://glastopf.org"&gt;Glastopf&lt;/a&gt; which is general purpose and quite useless in our case.&lt;/p&gt;
+&lt;p&gt;So to cope with the loss of proper tools I've built a Wordpress honeypot from scratch in the hope to catch some exploitation and provide the WPScan project with fresh data. It's called &lt;a href="/g/projects/wordpot.html"&gt;wordpot&lt;/a&gt; and is public domain.&lt;/p&gt;
+&lt;p&gt;If you were thinking about &lt;a href="http://wpscan.org"&gt;contributing to WPScan&lt;/a&gt; in a way or another starting now you can also help by installing wordpot and let us know how it goes. &lt;/p&gt;</summary></entry><entry><title>DLL and Code Injection in Python</title><link href="http://brindi.si/g/blog/dll-and-code-injection-in-python.html" rel="alternate"></link><updated>2012-05-30T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2012-05-30:g/blog/dll-and-code-injection-in-python.html</id><summary type="html">&lt;p&gt;Snippet time! Two simple functions to inject DLL or shellcodes into running processes (x86).&lt;/p&gt;
+&lt;p&gt;Enjoy:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;ctypes&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+
+&lt;span class="n"&gt;PAGE_READWRITE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x04&lt;/span&gt;
+&lt;span class="n"&gt;PAGE_EXECUTE_READWRITE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00000040&lt;/span&gt;
+
+&lt;span class="n"&gt;DELETE&lt;/span&gt;          &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00010000&lt;/span&gt;
+&lt;span class="n"&gt;READ_CONTROL&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00020000&lt;/span&gt;
+&lt;span class="n"&gt;WRITE_DAC&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00040000&lt;/span&gt;
+&lt;span class="n"&gt;WRITE_OWNER&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00080000&lt;/span&gt;
+&lt;span class="n"&gt;SYNCHRONIZE&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x00100000&lt;/span&gt;
+&lt;span class="n"&gt;PROCESS_ALL_ACCESS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;DELETE&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+                       &lt;span class="n"&gt;READ_CONTROL&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+                       &lt;span class="n"&gt;WRITE_DAC&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+                       &lt;span class="n"&gt;WRITE_OWNER&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+                       &lt;span class="n"&gt;SYNCHRONIZE&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+                       &lt;span class="mh"&gt;0xFFF&lt;/span&gt; &lt;span class="c"&gt;# If &amp;lt; WinXP/WinServer2003 - 0xFFFF otherwhise&lt;/span&gt;
+                     &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;VIRTUAL_MEM&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="mh"&gt;0x1000&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mh"&gt;0x2000&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;KERNEL32&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;windll&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kernel32&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;dllinject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dll_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Inject a DLL into target process.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    :param dll_path: path to dll&lt;/span&gt;
+&lt;span class="sd"&gt;    :param pid: target process id&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;dll_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dll_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;h_process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OpenProcess&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PROCESS_ALL_ACCESS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c"&gt;# No handler to PID&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Allocate space and write DLL path into it&lt;/span&gt;
+    &lt;span class="n"&gt;dll_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VirtualAllocEx&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;dll_len&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;VIRTUAL_MEM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;PAGE_READWRITE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c_int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WriteProcessMemory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;dll_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;dll_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;dll_len&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;byref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Where is LoadLibraryA?&lt;/span&gt;
+    &lt;span class="n"&gt;h_kernel32&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetModuleHandleA&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;kernel32.dll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;h_loadlib&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetProcAddress&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;h_kernel32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;LoadLibraryA&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Create thread&lt;/span&gt;
+    &lt;span class="n"&gt;t_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c_ulong&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CreateRemoteThread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;h_loadlib&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;dll_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;byref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t_id&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="c"&gt;# Cannot start a thread&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;t_id&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;codeinject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Inject code into target process.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    :param shellcode: shellcode to inject&lt;/span&gt;
+&lt;span class="sd"&gt;    :param pid: target process id&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;shellcode_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;h_process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OpenProcess&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PROCESS_ALL_ACCESS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c"&gt;# No handler to PID&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;No handler to PID&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+    &lt;span class="n"&gt;shellcode_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VirtualAllocEx&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;shellcode_len&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;VIRTUAL_MEM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;PAGE_EXECUTE_READWRITE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c_int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WriteProcessMemory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;shellcode_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;shellcode_len&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;byref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="n"&gt;t_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c_ulong&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;KERNEL32&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CreateRemoteThread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;h_process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;shellcode_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+            &lt;span class="n"&gt;byref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t_id&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="c"&gt;# Cannot start thread&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Injection is performerd trough &lt;code&gt;CreateRemoteThread&lt;/code&gt; which is not supported on Windows Vista, 7 and 8 (you ought to use &lt;a href="http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Thread/NtCreateThreadEx.html"&gt;&lt;code&gt;NtCreateThreadEx&lt;/code&gt;&lt;/a&gt; instead).&lt;/p&gt;</summary></entry><entry><title>What's New in xsssniper 0.8.x</title><link href="http://brindi.si/g/blog/whats-new-in-xsssniper-08x.html" rel="alternate"></link><updated>2012-02-24T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2012-02-24:g/blog/whats-new-in-xsssniper-08x.html</id><summary type="html">&lt;p&gt;After some months of development xsssniper has become more stable and a lot has changed since initial releases so it's about time to peek under the hood of current version: 0.8.x.&lt;/p&gt;
+&lt;p&gt;First and foremost it's important to highlight that the goal of this tool is to test an entire web application automatically with minimum human intervention (maybe &lt;em&gt;xssnuker&lt;/em&gt; would be a better name!).&lt;/p&gt;
+&lt;p&gt;With this in mind the biggest change has been done on the injection engine.
+In first versions an user intervention was needed to choose wich xss payload (&lt;em&gt;Y&lt;/em&gt;) to inject and what artifacts (&lt;em&gt;Z&lt;/em&gt;) to check in responses:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python xsssniper.py --url &lt;span class="s1"&gt;&amp;#39;X&amp;#39;&lt;/span&gt; --payload &lt;span class="s1"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt; --check &lt;span class="s1"&gt;&amp;#39;Z&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This was pretty much like testing injections from the browser. Awful. &lt;/p&gt;
+&lt;p&gt;After a little research and testing I redesigned the engine in order to automatically inject a taint and check the response for taint's artifacts in order to deduct if an injection was correctly performed and where.&lt;/p&gt;
+&lt;p&gt;The taint is something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;seed:seed seed=--&amp;gt;seed\&amp;quot;seed&amp;gt;seed&amp;#39;seed&amp;gt;seed+seed&lt;span class="nt"&gt;&amp;lt;seed&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where the &lt;code&gt;seed&lt;/code&gt; is a random alphanumeric string. &lt;/p&gt;
+&lt;p&gt;After the taint is injected the response is parsed in a finite state machine that looks for the seed and keep tracks of the logical position in the document (inside a tag attribute, inside an href, inside double quotes, inside singl equotes, etc).&lt;/p&gt;
+&lt;p&gt;If a seed is discovered in a correct position the injection is verified and reported.&lt;/p&gt;
+&lt;p&gt;This little change had a great impact on overall performances and has opened the gate to great mass scan functionalities.&lt;/p&gt;
+&lt;p&gt;In fact, before triggering the injection engine a set of crawler are run with the purpose to collect new targets to test. The crawlers are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An &lt;strong&gt;URL crawler&lt;/strong&gt; (&lt;code&gt;--crawl&lt;/code&gt;) to retrieve every local URL.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;form crawler&lt;/strong&gt; (&lt;code&gt;--forms&lt;/code&gt;) to retrieve every form on the page or, if used in conjunction with the url crawler, on the entire website.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;javascript crawler&lt;/strong&gt; (&lt;code&gt;--dom&lt;/code&gt;) used to collect javascripts, embedded and linked, to test against dom xss.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I am trying my best to detect dom xss too but unfortunately looks like that automatically testing for this vulnerability is a really difficult problem. &lt;/p&gt;
+&lt;p&gt;The solution adopted, far from being definitive, is to scan every javascript for common sources and sinks as suggested &lt;a href="http://code.google.com/p/domxsswiki"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is nothing more than running a regexp to highlight possible injection points, but no automatic verification is performed so a manual inspection from the user is still needed.&lt;/p&gt;
+&lt;p&gt;This is because I still dind't find a satisfying way to statically analyze the javascript: suggestions on this point are more than welcome!&lt;/p&gt;
+&lt;p&gt;At last we have few options of common utility:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--post&lt;/code&gt; and &lt;code&gt;--data&lt;/code&gt; to send post requests&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--threads&lt;/code&gt; to manage the number of threads used&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--http-proxy&lt;/code&gt; and &lt;code&gt;--tor&lt;/code&gt; to scan behind proxies&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--user-agent&lt;/code&gt; to specify an user agent&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--random-agent&lt;/code&gt; to randomize the user agent&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--cookie&lt;/code&gt; to use a cookie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For next versions I have a little todo list with some features I'd like to implement but on top of it there is the possibility to test injections with encoded payloads/taint. I think this is vital because at now discovered injections are still pretty basic.&lt;/p&gt;
+&lt;p&gt;Oh, and HTTP response splitting! I want that too.&lt;/p&gt;
+&lt;p&gt;And, last but not least, I'd really like to improve the output format: I tried different styles but it still looks clumsy to me.&lt;/p&gt;
+&lt;p&gt;That's all for now. As usual all the code and docs are available &lt;a href="http://bitbucket.org/gbrindisi/xsssniper"&gt;here on my bitbucket&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any suggestions, feature request, urge to contribute or just a bug to report... I want to hear from you!&lt;/p&gt;</summary></entry><entry><title>A Simple Debugger</title><link href="http://brindi.si/g/blog/a-simple-debugger.html" rel="alternate"></link><updated>2011-12-24T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2011-12-24:g/blog/a-simple-debugger.html</id><summary type="html">&lt;p&gt;Simple Debugger (sdbg) is a minimal Windows debugger I wrote to sharpen my knowledge of debugging practices. &lt;/p&gt;
+&lt;p&gt;It's written in python and it's obviously coded on top of the wonderful ctypes library. The overall architecture is heavily based on PyDbg since I was already familiar.&lt;/p&gt;
+&lt;p&gt;At the moment of this writing it's capable of setting soft, hard and memory breakpoints, it has a minimal interactive shell to retrieve registers status and it's expandable with custom callbacks for handling exceptions.&lt;/p&gt;
+&lt;p&gt;Building a debugger it's been an awesome experience (except for the parts where I am swearing on the IA32 Intel docs) and I really learned a lot - and this was the main goal.&lt;/p&gt;
+&lt;p&gt;Since I am starting to wet my feet in reverse engineering I am looking to eat my own dogfood and use it for analysing some samples from my malware collection. This way I hope to keep it updated and maybe add some new features too.&lt;/p&gt;
+&lt;p&gt;As usual everything is GPLd and you can find it on my &lt;a href="http://bitbucket.org/gbrindisi/sdbg"&gt;bitbucket page&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Introducing xsssniper</title><link href="http://brindi.si/g/blog/introducing-xsssniper.html" rel="alternate"></link><updated>2011-09-16T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2011-09-16:g/blog/introducing-xsssniper.html</id><summary type="html">&lt;p&gt;I wrote a little app called &lt;em&gt;xsssniper&lt;/em&gt; to automatically test XSS injection
+points in target URLs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python xsssniper.py --url &lt;span class="s1"&gt;&amp;#39;X&amp;#39;&lt;/span&gt; --payload &lt;span class="s1"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt; --check &lt;span class="s1"&gt;&amp;#39;Z&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;What it does is scanning target URL for GET parameters and then inject an
+XSS payload (Y) into them and parse the response for artefacts of the
+injection (Z).&lt;/p&gt;
+&lt;p&gt;The simplest example would be to inject
+&lt;code&gt;&amp;lt;script type="text/javascript"&amp;gt;window.alert('lol')&amp;lt;/script&amp;gt;&lt;/code&gt; and check for
+&lt;code&gt;&amp;lt;script type="text/javascript"&amp;gt;window.alert('lol')&amp;lt;/script&amp;gt;&lt;/code&gt;, if we have a match maybe we have
+just found an XSS.&lt;/p&gt;
+&lt;p&gt;If no check is specified xssniper will consider payload and check the same.&lt;/p&gt;
+&lt;p&gt;If no payload is specified as well a special file will be parsed for common
+payloads (&lt;code&gt;lib/payloads.xml&lt;/code&gt;, feel free to contribute!).&lt;/p&gt;
+&lt;p&gt;Another useful feature is the ability to crawl the target URL for relative
+links. Every link found is added to the scan queue and processed, so it's
+easier to test an entire website.&lt;/p&gt;
+&lt;p&gt;In the end this method is not fool proof but it's a good heuristic to mass
+find injection points and test escape strategies. Also since there is no
+browser emulation is your duty to manual test discovered injections against
+various browser's xss protections.&lt;/p&gt;
+&lt;p&gt;Here is the usage:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Usage: xsssniper.py &lt;span class="o"&gt;[&lt;/span&gt;options&lt;span class="o"&gt;]&lt;/span&gt;
+
+Options:
+  -h, --help            show this &lt;span class="nb"&gt;help &lt;/span&gt;message and &lt;span class="nb"&gt;exit&lt;/span&gt;
+  -u URL, --url&lt;span class="o"&gt;=&lt;/span&gt;URL     target URL
+  -p PAYLOAD, --payload&lt;span class="o"&gt;=&lt;/span&gt;PAYLOAD
+                        payload to inject. If the payload is not
+                        specified standard payloads from lib/payloads.xml
+                        will be used
+  -c CHECK, --check&lt;span class="o"&gt;=&lt;/span&gt;CHECK
+                        payload artefact to search in response
+  --threads&lt;span class="o"&gt;=&lt;/span&gt;THREADS     number of threads
+  --http-proxy&lt;span class="o"&gt;=&lt;/span&gt;HTTP_PROXY
+                        scan behind given proxy &lt;span class="o"&gt;(&lt;/span&gt;format: 127.0.0.1:80&lt;span class="o"&gt;)&lt;/span&gt;
+  --tor                 scan behind default Tor
+  --crawl               crawl target url &lt;span class="k"&gt;for&lt;/span&gt; other links to &lt;span class="nb"&gt;test&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It's development is still active and I am adding features day after day.&lt;/p&gt;
+&lt;p&gt;For any suggestion feel free to contact me (mail or &lt;a href="http://twitter.com/gbrindisi"&gt;twitter&lt;/a&gt;) meanwhile
+check out the &lt;a href="http://bitbucket.org/gbrindisi/xsssniper"&gt;repository&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Tor + Polipo on OpenBSD</title><link href="http://brindi.si/g/blog/tor-polipo-on-openbsd.html" rel="alternate"></link><updated>2011-06-14T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2011-06-14:g/blog/tor-polipo-on-openbsd.html</id><summary type="html">&lt;p&gt;Quick how-to install &lt;a href="http://www.torproject.org"&gt;Tor&lt;/a&gt; and &lt;a href="http://www.pps.jussieu.fr/~jch/software/polipo/"&gt;Polipo&lt;/a&gt; on OpenBSD 4.8, and route almost all the traffic trough them by deafult.&lt;/p&gt;
+&lt;p&gt;For simplicity I've installed from packages. As root:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pkg_add tor
+&lt;span class="nv"&gt;$ &lt;/span&gt;pkg_add polipo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next we need to configure Polipo to use Tor and we can take advantage of the sample config file provided by Tor itself:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /etc/polipo
+&lt;span class="nv"&gt;$ &lt;/span&gt;mv config config.old
+&lt;span class="nv"&gt;$ &lt;/span&gt;wget http://gitweb.torproject.org/torbrowser.git/blob_plain/HEAD:/build-scripts/config/polipo.conf
+&lt;span class="nv"&gt;$ &lt;/span&gt;mv polipo.conf config
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The part worth noticing is this (&lt;code&gt;9050&lt;/code&gt; is Tor default port):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# /etc/polipo/config&lt;/span&gt;
+&lt;span class="nv"&gt;socksParentProxy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;localhost:9050&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;socksProxyType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; socks5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's tune the config a little. I want Polipo to run as a daemon and log (&lt;code&gt;/var/log/polipo&lt;/code&gt;) so I've added:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Run as daemon&lt;/span&gt;
+&lt;span class="nv"&gt;daemonise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="nv"&gt;logSyslog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And I like Tor to run as daemon too. Open Tor config (&lt;code&gt;/etc/tor/torrc&lt;/code&gt;) and uncomment/add:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;RunAsDaemon 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For other options you can &lt;code&gt;man polipo&lt;/code&gt; and &lt;code&gt;man tor&lt;/code&gt;. Note that I didn't touch the standard ports but you can easily change them from the respective configs.&lt;/p&gt;
+&lt;p&gt;Now let's make them run at startup by editing &lt;code&gt;/etc/rc.local&lt;/code&gt; and adding:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Start Tor&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -x /usr/local/bin/tor &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; -n &lt;span class="s1"&gt;&amp;#39; tor&amp;#39;&lt;/span&gt;
+    /usr/local/bin/tor
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="c"&gt;# Start Polipo&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -x /usr/local/bin/polipo &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; -n &lt;span class="s1"&gt;&amp;#39; polipo&amp;#39;&lt;/span&gt;
+    /usr/local/bin/polipo
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Last step is to set up the HTTP_PROXY enviroment variable of your shell. This var is used by most application to connect trough a proxy. Open your shell config (like &lt;code&gt;~/.bashrc&lt;/code&gt;) and add:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Proxy!&lt;/span&gt;
+&lt;span class="nv"&gt;http_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://127.0.0.1:8118/
+&lt;span class="nv"&gt;HTTP_PROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$http_proxy&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;http_proxy HTTP_PROXY
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some applications use all lower case, some all upper, so we specify both to be safe. &lt;/p&gt;
+&lt;p&gt;Now to test you can reboot or just start everything by hand (in this case be sure to export &lt;code&gt;HTTP_PROXY&lt;/code&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tor
+&lt;span class="nv"&gt;$ &lt;/span&gt;polipo
+&lt;span class="nv"&gt;$ &lt;/span&gt;curl ip.appspot.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Please note that not every application understand and use &lt;code&gt;HTTP_PROXY&lt;/code&gt;, for better security have a look at &lt;a href="https://code.google.com/p/torsocks/"&gt;torsocks&lt;/a&gt; and the &lt;a href="https://trac.torproject.org/projects/tor/wiki"&gt;Tor wiki&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;EDIT 16/02/2012&lt;/h3&gt;
+&lt;p&gt;If you need to connect to known domains without passing trough the tor proxy (like &lt;code&gt;localhost&lt;/code&gt;) setting up the &lt;code&gt;NO_PROXY&lt;/code&gt; enviroment variable might help:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;no_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;NO_PROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then check if the vars have been correctly set:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;env
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Check your shell manual pages for further reference.&lt;/p&gt;</summary></entry><entry><title>Pastebin v3 Command Line Script</title><link href="http://brindi.si/g/blog/pastebin-v3-command-line-script.html" rel="alternate"></link><updated>2011-04-13T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2011-04-13:g/blog/pastebin-v3-command-line-script.html</id><summary type="html">&lt;p&gt;Since I haven't managed to find a command line pastebin script whose
+based on the &lt;a href="http://pastebin.com/api"&gt;new APIs&lt;/a&gt; I wrote one.&lt;/p&gt;
+&lt;p&gt;You can find it &lt;a href="https://bitbucket.org/gbrindisi/pastebin/"&gt;on my bitbucket&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Usage:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pastebin.py -f python -e 10M -p &lt;span class="m"&gt;1&lt;/span&gt; -t MyPaste &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;lt&lt;span class="p"&gt;;&lt;/span&gt; whatever
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Pratically you just pipe your data to the script.&lt;/p&gt;
+&lt;p&gt;Here are some options:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-f defines data format &lt;span class="o"&gt;(&lt;/span&gt;php, python, etc&lt;span class="o"&gt;)&lt;/span&gt;
+-e the expiry &lt;span class="nb"&gt;time&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;10M, 1G, 1D, N&lt;span class="o"&gt;)&lt;/span&gt;
+-p the privacy &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; is private, &lt;span class="m"&gt;0&lt;/span&gt; is public&lt;span class="o"&gt;)&lt;/span&gt;
+-t the title of the paste
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The script looks for a config file in your home dir with &lt;a href="http://pastebin.com/api#1"&gt;your dev API
+key&lt;/a&gt; and optionally an username and a valid password (without valid login
+credentials your pastes will be anonymous).&lt;/p&gt;
+&lt;p&gt;The first time you run it will create the config (&lt;code&gt;~/.pastebin&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Feel free to fork/edit/whatever it.&lt;/p&gt;</summary></entry><entry><title>Run Xmonad on Snow Leopard</title><link href="http://brindi.si/g/blog/run-xmonad-on-snow-leopard.html" rel="alternate"></link><updated>2010-12-16T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2010-12-16:g/blog/run-xmonad-on-snow-leopard.html</id><summary type="html">&lt;p&gt;This is a little how-to install and execute &lt;a href="http://xmonad.org" title="Xmonad"&gt;xmonad&lt;/a&gt; under X11.app on
+Snow Leopard.&lt;/p&gt;
+&lt;p&gt;First thing to do (if you haven't yet) is installing the Haskell platform. I
+use &lt;a href="https://github.com/mxcl/homebrew" title="Homebrew"&gt;Homebrew&lt;/a&gt; as my packet manager of choice:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;brew install haskell-platform
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next we are going to install xmonad from Cabal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cabal update
+cabal install xmonad
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that everything is installed correctly we need to tweak our X11.app
+settings in order to run nicely with xmonad.&lt;/p&gt;
+&lt;p&gt;First open your &lt;code&gt;.bash_profile&lt;/code&gt; and append the followings as nicely
+described &lt;a href="http://haskell.org/haskellwiki/Xmonad/Using_xmonad_on_Apple_OSX#Configuring_Your_.profile"&gt;here&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Xmonad stuff&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/Users/gbrindisi/.cabal/bin:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;USERWM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;which xmonad&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next we need an &lt;code&gt;.xinitrc&lt;/code&gt; in our &lt;code&gt;$HOME&lt;/code&gt;, and we can copy from the stock
+one:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cp /usr/X11/lib/X11/xinit/xinitrc ~/.xinitrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some editing is needed because this &lt;code&gt;.xinitrc&lt;/code&gt; executes the quartz-wm by
+default and xmonad will throw you an &lt;a href="http://www.haskell.org/pipermail/xmonad/2007-June/001285.html"&gt;error&lt;/a&gt; if you'll try to start it on
+top of another windows manager.&lt;/p&gt;
+&lt;p&gt;So open it and locate this if statement and comment/remove everything:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -d /usr/X11/lib/X11/xinit/xinitrc.d &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; f in /usr/X11/lib/X11/xinit/xinitrc.d/*.sh &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="o"&gt;[&lt;/span&gt; -x &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&lt;/span&gt; . &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;done&lt;/span&gt;
+    &lt;span class="nb"&gt;unset &lt;/span&gt;f
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The above statement simply executes every &lt;code&gt;*.sh&lt;/code&gt; in the X11's &lt;code&gt;xinitrc.d&lt;/code&gt;
+directory.
+One of those is the quartz-wm that you don't want to run but if you need the
+others feel free to execute them anyway &amp;ndash; I haven't looked at them in-depth.&lt;/p&gt;
+&lt;p&gt;I've also removed the following lines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;twm &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&lt;/span&gt;
+xclock -geometry 50x50-1+1 &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&lt;/span&gt;
+xterm -geometry 80x50+494+51 &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&lt;/span&gt;
+xterm -geometry 80x20+494-0 &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;amp&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nb"&gt;exec &lt;/span&gt;xterm -geometry 80x66+0+0 -name login
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then you need to append a couple of commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$USERWM&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now everything should be setted up correctly.&lt;/p&gt;
+&lt;p&gt;The next and final step we need to face is to remap our X11 key bindings
+because since Command is the default xmonad's meta key it will happily
+interfere with other OSX applications.&lt;/p&gt;
+&lt;p&gt;Create a new &lt;code&gt;.Xmodmap&lt;/code&gt; and write:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;clear Mod1
+clear Mod2
+keycode &lt;span class="nv"&gt;63&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Mode_switch
+keycode &lt;span class="nv"&gt;66&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Meta_L
+add &lt;span class="nv"&gt;Mod1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Meta_L
+add &lt;span class="nv"&gt;Mod2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Mode_switch
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And we are set.  &lt;br /&gt;
+(Note: 63 is the left Option key and 66 is the left Command key)&lt;/p&gt;
+&lt;p&gt;Now run X11.app and enjoy xmonad.&lt;/p&gt;</summary></entry><entry><title>SSD Bonanza</title><link href="http://brindi.si/g/blog/ssd-bonanza.html" rel="alternate"></link><updated>2010-12-08T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2010-12-08:g/blog/ssd-bonanza.html</id><summary type="html">&lt;p&gt;I've finally found the time and the force of will to backup everything and to upgrade my MacBook with an SSD disk and some RAM.
+Crucial had a nice sale last month to which I could not resist.&lt;/p&gt;
+&lt;p&gt;I got rid of the crappy superdrive and moved the old hard disk in a caddy found on ebay.
+An heartfelt goodbye message to my superdrive: &lt;strong&gt;DIE YOU BASTARD!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now I have 64gb of SSD bonanza for MacOS and Virtual Machines and 140gb for storage. Can't be more happy.&lt;/p&gt;
+&lt;p&gt;Since I had to re-install everything I was almost thinking of installing FreeBSD but memories of past experiences stopped me. At now the way to go on a MacBook is MacOS and VM for other needs. I'll wait until FreeBSD9 and in the meantime I can play with some corpses layin' in my bedroom – I just need a stimulating project to wipe out my laziness.&lt;/p&gt;</summary></entry><entry><title>Introducing Pepbot</title><link href="http://brindi.si/g/blog/introducing-pepbot.html" rel="alternate"></link><updated>2010-11-25T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2010-11-25:g/blog/introducing-pepbot.html</id><summary type="html">&lt;p&gt;Introducing my new little creature just released in the wild:
+&lt;a href="http://pepbot.com"&gt;Pepbot&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What?&lt;/h2&gt;
+&lt;p&gt;It's a disposable temporary email service. His main goal is to help
+you dodge spam by providing a valid throw away mail address you can
+use instead of your real one. For example when you want to leave a
+comment on a shady blog, register to a random forum or whatever else.&lt;/p&gt;
+&lt;p&gt;When prompted for a valid mail simply use &lt;code&gt;whatever@pepbot.com&lt;/code&gt;
+then go to Pepbot and check your mail or forget about it.&lt;/p&gt;
+&lt;p&gt;But there is more: the auto-mode!&lt;/p&gt;
+&lt;p&gt;Many web services needs to verify that the email address you provide
+is a valid one before confirming your account.
+To do so they will send a verification link you should click. So
+ideally you need to check your mail, wait for the verification, click
+the link and then finally receive a valid account.
+Here comes the awesomeness: use a special mailbox with the &lt;code&gt;-a&lt;/code&gt; tag
+like &lt;code&gt;random-a@pepbot.com&lt;/code&gt; and Pepbot will click on every link from
+every mail it receives for you!&lt;/p&gt;
+&lt;h2&gt;Why?&lt;/h2&gt;
+&lt;p&gt;I am learning python so I thought it would be fun to start coding
+something useful (at least for me), plus I needed something to help me
+sharpen my sys admin skills.&lt;/p&gt;
+&lt;p&gt;So far it worked: I've coded, I've hardened a VPS, I've deployed an
+app (oh man it was painful!)... I learned a lot troughout all the
+process. And I had fun. Epic win.&lt;/p&gt;
+&lt;h2&gt;How?&lt;/h2&gt;
+&lt;p&gt;Pepbot is built on top of &lt;a href="http://lamsonproject.org/"&gt;Lamson&lt;/a&gt; and...
+&lt;a href="http://memcached.org/"&gt;Memcached&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Long story short: whenever a mail arrives Lamson reads it, performs
+some tasks, and puts it into a local Memcached server. The frontend
+(which is written with
+&lt;a href="http://bottle.paws.de/docs/dev/index.html"&gt;bottle.py&lt;/a&gt;) retrieves the
+emails from the Memcached server whenever an user asks to check a
+mailbox.&lt;/p&gt;
+&lt;p&gt;Why Memcached and not some other well-estabilished database? Because I
+tought (actually I made the math) that writing on disk would be a
+bottleneck for performances. I wanted something that could scale well
+and fast against a large volume of stored mails and since ideally the
+majority of mails will be totally useless (spam! nom nom nom) why
+bother?&lt;/p&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;Nothing. Go and play with my baby.&lt;/p&gt;
+&lt;p&gt;Remeber that he is in public beta: so if you find a bug please let me know!&lt;/p&gt;
+&lt;p&gt;And if you have suggestions and/or a feature request don't be shy and
+contact me.&lt;/p&gt;</summary></entry><entry><title>How To Automate SSH With Expect</title><link href="http://brindi.si/g/blog/how-to-automate-ssh-with-expect.html" rel="alternate"></link><updated>2010-11-17T00:00:00+01:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2010-11-17:g/blog/how-to-automate-ssh-with-expect.html</id><summary type="html">&lt;p&gt;Another useful snippet of code to automate SSH with expect:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/expect&lt;/span&gt;
+spawn ssh user@host whatever
+expect &lt;span class="s2"&gt;&amp;quot;*?assword:*&amp;quot;&lt;/span&gt;
+send -- &lt;span class="s2"&gt;&amp;quot;password\r&amp;quot;&lt;/span&gt;
+send -- &lt;span class="s2"&gt;&amp;quot;\r&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I used it with dynamic SSH connection detection in &lt;code&gt;.profile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In a lab I am using every machine has the same unprivileged user
+authenticated with the same password. And SSH is open.&lt;/p&gt;
+&lt;p&gt;You can guess the popular game: connect to random machines and mess things
+up while someone is working on them.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;.profile&lt;/code&gt; I've added a simple check and a call to the expect script to
+automatically connect to whoever ssh to my machine (and shutdown their
+computer, or open random porn, you decide):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$SSH_CONNECTION&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    ./release_the_dogs.exp
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The victim ip is easily obtained by &lt;code&gt;${SSH_CONNECTION%* * * *}&lt;/code&gt;.&lt;/p&gt;</summary></entry><entry><title>FreeBSD Root Password Recover</title><link href="http://brindi.si/g/blog/freebsd-root-password-recover.html" rel="alternate"></link><updated>2010-10-16T00:00:00+02:00</updated><author><name>Gianluca Brindisi</name></author><id>tag:brindi.si,2010-10-16:g/blog/freebsd-root-password-recover.html</id><summary type="html">&lt;p&gt;Never locked out again from my FreeBSD virtual machine for having forget the root
+password.&lt;/p&gt;
+&lt;p&gt;The fix:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Boot in single user mode&lt;/li&gt;
+&lt;li&gt;Remount the &lt;code&gt;/&lt;/code&gt; file system in read and write mode with &lt;code&gt;mount -u /&lt;/code&gt; and
+then &lt;code&gt;mount -a&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Setup the new password by &lt;code&gt;passwd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Boot in multi-user mode with &lt;code&gt;exit&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;li&gt;Profit!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Pheww.&lt;/p&gt;
+&lt;p&gt;I needed to save this tip somewhere because I know I will forget root
+password again.&lt;/p&gt;</summary></entry></feed>

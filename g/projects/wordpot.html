@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <title>wordpot - Tonic Vermifuge</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet" />-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://brindi.si/g/theme/style.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://brindi.si/g/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Tonic Vermifuge Full Atom Feed" />
+  </head>
+  <body id="index" class="archive">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <nav id="main-navbar" class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://brindi.si/g">Tonic Vermifuge</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li><a href="http://brindi.si/g/pages/about.html">About</a></li>
+            <li><a href="http://brindi.si/g/projects/">Projects</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="container">
+    <section id="content" class="article content">
+      <header>
+        <h2 class="entry-title">
+          wordpot
+        </h2>
+        
+      </header>
+<!-- .entry-content -->
+      <div class="entry-content">
+        <p>Wordpot is a Wordpress honeypot which detects probes for plugins, themes, timthumb and other common files used to fingerprint a wordpress installation.</p>
+<div class="highlight"><pre><span class="nv">$ </span>python wordpot.py --help
+Usage: wordpot.py <span class="o">[</span>options<span class="o">]</span>
+
+Options:
+  -h, --help        show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  --host<span class="o">=</span>HOST       Host address
+  --port<span class="o">=</span>PORT       Port address
+  --title<span class="o">=</span>TITLE     Blog Title
+  --theme<span class="o">=</span>THEME     Default theme name
+  --plugins<span class="o">=</span>PLUGINS Fake installed plugins
+  --themes<span class="o">=</span>THEMES   Fake installed plugins
+  --ver<span class="o">=</span>VERSION     Wordpress version
+</pre></div>
+
+
+<p>To configure the honeypot you can edit the config file <code>wordpot.conf</code> or provide arguments trough the command line interface as shown above.</p>
+<h2>Install and Sources</h2>
+<p>Install from git:</p>
+<div class="highlight"><pre><span class="nv">$ </span>git clone git@github.com:gbrindisi/wordpot.git
+</pre></div>
+
+
+<p>Find the source on <a href="https://github.com/gbrindisi/wordpot/">github</a>.</p>
+<h2>Theme support</h2>
+<p>You can use a wordpress theme as you would in a normal Wordpress installation by putting the theme folder in the <code>static/wp-content/themes/</code> directory. You might also need to edit the html skeleton which is stored in the <code>templates/</code> folder and should be named as your theme (e.g. <code>themename.html</code>) - take a look at <code>twentyeleven.html</code> to see how it works. </p>
+<p>To use the theme start wordpot with the theme option (default value is <code>twentyeleven</code>):</p>
+<div class="highlight"><pre><span class="nv">$ </span>python wordpot --theme<span class="o">=</span>THEMENAME
+</pre></div>
+
+
+<p>Templates are built with the <a href="http://jinja.pocoo.org">Jinja2</a> template engine.</p>
+<h2>Expandable with plugins (<em>beta</em>)</h2>
+<p>Wordpot can be expanded with plugins to improve its behaviour or just expand some functionalities.</p>
+<p>For example you can write a plugin to mimick a particular vulnerability in a Wordpress plugin or theme.</p>
+<p>Learn more in the dedicated <a href="https://github.com/gbrindisi/wordpot/wiki/Plugins">wiki page</a>.</p>
+<h2>License</h2>
+<p>ISC License.</p>
+<blockquote>
+<p>Copyright (c) 2012, Gianluca Brindisi &lt; g@brindi.si &gt;</p>
+<p>Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+</blockquote>
+      </div>
+<!-- /.entry-content -->
+    </section>    
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text"><!--<img style="height:50px" src="http://brindi.si/static/drug.png">--> &copy; <a href="http://brindi.si/g">Tonic Vermifuge</a> powered by coffee</p>
+      </div>
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-23969560-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
