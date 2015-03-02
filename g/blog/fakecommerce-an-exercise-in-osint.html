@@ -55,7 +55,7 @@
       </header>
 <!-- .entry-content -->
       <div class="entry-content">
-        <p>I've been contacted by a friend seeking for help: he bought something on a random ecommerce and after 30 days nothing was shipped and no one was replying to his emails. HE wanted to know if he was scammed.</p>
+        <p>I've been contacted by a friend seeking for help: he bought something on a random ecommerce and after 30 days nothing was shipped and no one was replying to his emails. He wanted to know if he had been scammed.</p>
 <p>In the end the item arrived and the ecommerce proven to be somehow legit and the <code>FakeCommerce</code> label might be a bit sensationalistc.
 Anyhow the quick investigation I performed was a good OSINT exercise worth a share.</p>
 <p>The website was <code>pietraneraetna.it</code>.</p>
@@ -156,7 +156,7 @@ this should be illegal and considered fraud.
 <p>A quick manual investigation on the ips revealed some more similar ecommerce sites. DomainTools's IP Explorer has proven to be extremely useful to quickly find populated D blocks.</p>
 <p>Next step was to perform a mass reverse ip lookup on those subnets.</p>
 <p>Then I did compare the front page of already known fake ecommerces to derive a common pattern, on top of which I started scraping the whole domain list with the help of some <code>curl</code> and <code>grep</code> fu. It took a lot of time.</p>
-<p>The pattern was far from perfect (and the scraping is incomplete) but gave an astounding list of over 1000 matches. I suspect there might be some more. The list <a href="#">is here</a> for your delight, with some false positives. Here is an excerpt:</p>
+<p>The pattern was far from perfect (and the scraping is incomplete) but gave an astounding list of over 1000 matches. I suspect there might be some more. The list <a href="https://gist.github.com/gbrindisi/63a3ce62905532bbd549">is here</a> for your delight, with some false positives. Here is an excerpt:</p>
 <ul>
 <li>3dblaupause.de</li>
 <li>abercrombie-zweibrucken.com</li>
